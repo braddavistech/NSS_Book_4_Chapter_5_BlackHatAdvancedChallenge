@@ -20,17 +20,18 @@ const financialAdvisor = Object.create (null, {
     enumerable: false
   },
   worth: {
-    value: function () {
+    get: function () { 
       let totalWorth = 0;
       for (let i = 0; i < this.portfolio.length; i++){
         if (this.portfolio[i].transaction == "buy") {
-          totalWorth += this.portfolio[i].quantity * financialAdvisor.portfolio[i].price;
+          totalWorth += this.portfolio[i].quantity * this.portfolio[i].price;
         } else if (this.portfolio[i].transaction == "sell") {
-          totalWorth -= this.portfolio[i].quantity * financialAdvisor.portfolio[i].price;
+          totalWorth -= this.portfolio[i].quantity * this.portfolio[i].price;
         }
       }
-      return `The total worth of the stocks currently in this portfolio is USD $${totalWorth.toFixed(2)}.`;
+      return totalWorth.toFixed(2);
     },
+    set: function () {},
     enumerable: false,
   },
   purchase: {
@@ -78,7 +79,7 @@ const financialAdvisor = Object.create (null, {
       let placeHolder = document.getElementById("nameBox");
       let sentence = document.createElement("h4");
       sentence.setAttribute("id", "sentence");
-      sentence.innerHTML = `​​​​​${this.name} is an advisor at ${this.company}. ${this.worth()}`
+      sentence.innerHTML = `​​​​​${this.name} is an advisor at ${this.company}. The current value of his portfolio is USD $${this.worth}.`
       placeHolder.appendChild(sentence);
     },
     writable: false,
@@ -124,8 +125,6 @@ financialAdvisor.sell("Krispy Kreme", 5, 10);
 console.log(financialAdvisor.sell("Krispy Kreme", 5, 10));
 financialAdvisor.purchase("Google", 60, 10.5);
 financialAdvisor.purchase("Twitter", 60, 47);
-console.log(financialAdvisor);
-console.log(financialAdvisor.worth());
 buildName(financialAdvisor.name, financialAdvisor.company, financialAdvisor.specialty);
 currentStock(financialAdvisor.portfolio);
 financialAdvisor.toMyString();
