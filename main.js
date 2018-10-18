@@ -1,23 +1,25 @@
-const financialAdvisor = Object.create (null, {
+let FinancialAdvisor = Object.create(Object.prototype, { 
   company: {
     value: "Shady Investments",
-    enumerable: true,
-    writable: true
+    enumerable: false,
+    writable: false
   },
   specialty: {
-    value: "Tech Investments",
-    enumerable: true,
-    writable: true
+    value: "",
+    enumerable: false,
+    writable: true,
+    
   },
   name: {
-    value: "Brad Davis",
+    value: "",
     enumerable: true
   },
   portfolio: {
     value: [
       
     ],
-    enumerable: false
+    enumerable: false,
+    writable: false
   },
   worth: {
     get: function () { 
@@ -79,12 +81,33 @@ const financialAdvisor = Object.create (null, {
       let placeHolder = document.getElementById("nameBox");
       let sentence = document.createElement("h4");
       sentence.setAttribute("id", "sentence");
-      sentence.innerHTML = `​​​​​${this.name} is an advisor at ${this.company}. The current value of his portfolio is USD $${this.worth}.`
+      sentence.innerHTML = `​​​​​${this.name} is an advisor at ${this.company}. The current value of their portfolio is USD $${this.worth}.`
       placeHolder.appendChild(sentence);
     },
     writable: false,
     enumerable: false
   }
+});
+
+const juliaKimChung = Object.create(FinancialAdvisor,  {  
+ name: {value: "Julia Kim Chung"},
+  specialty: {value: "Futures Trader"},
+  portfolio: {value: []}
+});
+const bradDavis = Object.create(FinancialAdvisor, {
+  name: {value: "Brad Davis"},
+  specialty: {value: "Tech Start Ups"},
+  portfolio: {value: []}
+});
+const forrestGump = Object.create(FinancialAdvisor,  {  
+  name: {value: "Forrest Gump"},
+   specialty: {value: "Shrimping Boats"},
+   portfolio: {value: []}
+ });
+const steveMartin = Object.create(FinancialAdvisor, {
+  name: {value: "Steve Martin"},
+  specialty: {value: "Gag Gift Companies"}  ,
+  portfolio: {value: []}
 });
 
 const buildName = (names, companies, specialties) => {
@@ -116,15 +139,35 @@ function currentStock (stocks) {
   placeHolder.appendChild(stockFrag);
 }
 
-financialAdvisor.purchase("YouTube", 50, 79.99);
-financialAdvisor.purchase("Facebook", 60, 20);
-financialAdvisor.sell("Facebook", 70, 43.25);
-console.log(financialAdvisor.sell("Facebook", 70, 43.25));
-financialAdvisor.sell("Facebook", 60, 98);
-financialAdvisor.sell("Krispy Kreme", 5, 10);
-console.log(financialAdvisor.sell("Krispy Kreme", 5, 10));
-financialAdvisor.purchase("Google", 60, 10.5);
-financialAdvisor.purchase("Twitter", 60, 47);
-buildName(financialAdvisor.name, financialAdvisor.company, financialAdvisor.specialty);
-currentStock(financialAdvisor.portfolio);
-financialAdvisor.toMyString();
+
+
+
+
+juliaKimChung.purchase("Oil Futures", 50, 79.99);
+bradDavis.purchase("GitHub", 60, 20);
+steveMartin.purchase("Whoopie Cushions Inc", 70, 43.25);
+bradDavis.sell("Facebook", 30, 98);
+juliaKimChung.purchase("Corn Futures", 60, 10.5);
+steveMartin.purchase("Bubba Gump", 60, 47);
+juliaKimChung.purchase("Steel Futures", 75, 10);
+bradDavis.purchase("YouTube", 50, 79.99);
+bradDavis.purchase("Microsoft", 60, 20);
+steveMartin.sell("Slinky", 70, 43.25);
+bradDavis.purchase("Facebook", 15, 98);
+steveMartin.purchase("Mattel", 60, 10.5);
+steveMartin.purchase("Silly String", 60, 47);
+juliaKimChung.purchase("Solar Energy Futures", 75, 10);
+bradDavis.purchase("Apple", 75, 100.5);
+forrestGump.purchase("Jenny", 1, 100000);
+buildName(bradDavis.name, bradDavis.company, bradDavis.specialty);
+currentStock(bradDavis.portfolio);
+bradDavis.toMyString();
+buildName(steveMartin.name, steveMartin.company, steveMartin.specialty);
+currentStock(steveMartin.portfolio);
+steveMartin.toMyString();
+buildName(juliaKimChung.name, juliaKimChung.company, juliaKimChung.specialty);
+currentStock(juliaKimChung.portfolio);
+juliaKimChung.toMyString();
+buildName(forrestGump.name, forrestGump.company, forrestGump.specialty);
+currentStock(forrestGump.portfolio);
+forrestGump.toMyString();
