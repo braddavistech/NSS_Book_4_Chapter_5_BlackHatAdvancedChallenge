@@ -1,4 +1,4 @@
-let FinancialAdvisor = Object.create(Object.prototype, { 
+const FinancialAdvisor = Object.create(Object.prototype, { 
   company: {
     value: "Shady Investments",
     enumerable: false,
