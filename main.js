@@ -140,8 +140,6 @@ function currentStock (stocks) {
 }
 
 
-console.log(juliaKimChung);
-
 
 
 
